@@ -1,0 +1,283 @@
+first_code.py::
+print(3+6)
+print(9*8)
+a = 23
+b = 45
+c = 16
+
+print(round((a/b)*0.9*c))
+
+exc_tree.py::
+patron = input('patron?')
+if patron == 'full':
+    w_e = float(input('w_e?'))
+    
+elif patron == 'some':
+    print('yes')
+elif patron == 'none':
+    print('no')
+else:
+    print('not defined')
+
+if_else.py::
+weight = float(input('please enter your weight: '))
+height = float(input('please enter your height: '))
+bmi = weight / (height ** 2)
+print(f'Your bmi is {bmi}')
+
+if 18.5 <= bmi < 25:
+    print('normal')
+elif bmi >= 25 and bmi < 30:
+    print('overweight')
+elif 30 <= bmi < 35:
+    print('obesity 1')
+elif 35 <= bmi < 40:
+    print('obesity 2')
+elif bmi >= 40:
+    print('obesity 3')
+else:
+    print('underweight')
+
+
+
+if_statement1.py::
+weight = 84
+height = 1.83
+bmi = weight / (height ** 2)
+normal_bmi = 24
+normal_weight = normal_bmi * (height ** 2)
+
+
+if bmi >= 25:
+    print('overweight')
+    print('Your overwight value is = ',
+          weight - normal_weight,
+          'and your bmi is',bmi)
+    print(f'Your overwight value is {round(weight - normal_weight,2)} and your bmi is {bmi}')
+    
+print('done')
+
+print(f'overwight value {round(weight - normal_weight,2)} bmi is {bmi}')
+print('overwight value {0} bmi is {1}'.format(round(weight - normal_weight,2),bmi))
+
+score.py::
+score = float(input('enter your grade: '))
+
+if  0 <= score <= 1:
+    if score >= 0.9:
+        print('A')
+    elif score >= 0.8:
+        print('B')
+    elif score >= 0.7:
+        print('C')
+    elif score >= 0.6:
+        print('D')
+    else:
+        print('F')
+else:
+    print('wrong entry')
+
+loop_with_turtle.py::
+import turtle
+turtle.colormode(255)
+turtle.getscreen()
+t = turtle.Turtle()
+t.speed('fastest')
+t.pencolor((41,41,253))
+
+c = 0
+for i in range(8):
+    print(c)
+    t.fd(100)
+    t.lt(360/8)
+    if c%2 == 1:
+        t.pencolor((41,41,253))      
+    else:
+        t.pencolor((255,255,255))
+
+    c += 1
+
+
+nested_for_turtle.py::
+import turtle
+turtle.colormode(255)
+turtle.getscreen()
+t = turtle.Turtle()
+t.speed('fastest')
+
+
+r = 0
+g = 0
+b = 0
+for i in range(100):
+    if r <= 249 and g<=253 and b<= 251:
+        r += 2
+        g += 2
+        g = int(g)
+        b += 2
+        t.pencolor((r,g,b))
+    else:
+        r -= 2
+        g -= 2
+        g = int(g)
+        b -= 4
+        t.pencolor((r,g,b))
+    for j in range(4):
+        t.fd(200)
+        t.lt(90)
+
+
+    t.lt(3.6)
+
+
+random_for_turtle.py::
+import turtle
+from random import randint
+turtle.colormode(255)
+turtle.getscreen()
+t = turtle.Turtle()
+t.speed('fastest')
+
+
+
+for i in range(100):
+    r = randint(0,400)
+    t.fd(r)
+    t.bk(r)
+    t.lt(3.6)
+
+
+range_in_loop.py::
+
+for i in range(200,100,-20):
+    print(i)
+
+
+1.py::
+import turtle
+t = turtle.Turtle()
+t.speed(-1)
+c = 10
+for i in range(50):
+    t.fd(c)
+    t.left(60)
+    c += 10
+
+3.py::
+import turtle
+t = turtle.Turtle()
+t.speed(-1)
+c = 10
+for i in range(270):
+    t.fd(100)
+    t.bk(100)
+    t.left(1)
+
+
+4.py::
+import turtle
+t = turtle.Turtle()
+t.speed(-1)
+c = 10
+t.lt(90)
+for i in range(270):
+    t.fd(200)
+    t.bk(200)
+    t.lt(1)
+
+
+4_v.py::
+import turtle
+t = turtle.Turtle()
+t.speed(-1)
+c = 10
+
+for i in range(360):
+    if i >= 90:
+        t.fd(200)
+        t.bk(200)
+    t.lt(1)
+
+
+5.py::
+import turtle
+t = turtle.Turtle()
+t.speed(-1)
+c = 10
+
+for i in range(360):
+    if 90 <= i <= 180 or 270 <= i <= 360:  
+        t.lt(1)
+    else:
+        t.fd(200)
+        t.bk(200)
+        t.lt(1)
+
+
+5_v.py::
+import turtle
+t = turtle.Turtle()
+t.speed(-1)
+c = 10
+
+for _ in range(2):
+    for i in range(90):
+            t.fd(200)
+            t.bk(200)
+            t.lt(1)
+    t.lt(90)
+
+
+6.py::
+import turtle
+t = turtle.Turtle()
+t.speed(-1)
+c = 10
+
+for j in range(20):
+    for i in range(4):
+            t.fd(j * 10)
+            t.lt(90)
+
+
+
+hr.py::
+import salary
+salary.py::
+def salary(exp,edu,job = 1,  base_salary = 10000000):
+   
+    salary = base_salary + exp* 0.07 * base_salary
+    match edu:
+        case 'phd':
+            salary = 1.15 * salary
+        case 'ms':
+            salary = 1.1 * salary
+        case 'bc':
+            salary = 1.05 * salary
+    if job == 1:
+        salary = 1.2 * salary
+    return salary
+
+def insu(salary):
+    return salary * .07
+
+def tax(salary):
+    tax = 0
+    if salary <= 10000000:
+        tax = 0
+    elif 10000000 < salary <= 20000000:
+        tax += (salary - 10000000) * .15
+    else:
+        tax += (salary - 20000000) * .2
+    return tax
+
+def net_salary(salary):
+    return salary - insu(salary) - tax(salary)
+
+print(__name__)
+if __name__ == '__main__':
+    print(salary(15,'bc',1,30000000))
+    print(salary(0,'bc',1))
+    print(salary(edu = 'ms',base_salary= 20000000, exp = 5, job = 0))
+    print(tax(50000000))
+    print(net_salary(salary(15,'bc',1,30000000)))
