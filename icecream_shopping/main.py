@@ -1,4 +1,4 @@
-from icecream import IceCream
+from icecream import IceCream, Musical
 from warehouse import Warehouse
 from menu import Menu
 
@@ -18,11 +18,16 @@ while turn_on:
         print('\n')
 
     elif user_input == 2 :
-        name, price, weight = menu.define_new_icecream()
+
+        ice_cream_type = menu.which_type()
+        name, price, weight, songs = menu.define_new_icecream(ice_cream_type)
+
         if name not in ice_creams_kinds:
-            new_icecream = IceCream(name=name, weight=weight, price=price)
+            if ice_cream_type == 'normal':
+                new_icecream = IceCream(name=name, weight=weight, price=price)
+            elif ice_cream_type == 'musical' :
+                new_icecream = Musical(name=name, weight=weight, price=price, songs=songs)
             ice_creams_kinds = IceCream.icecream_dict.copy()
-            print(ice_creams_kinds)
             user_answer = menu.want_to_add_to_stock()
             if user_answer.lower() == 'yes':
                 warehouse.add_to_stock(ice_creams_kinds= ice_creams_kinds,ice_cream= new_icecream.new_icecream)

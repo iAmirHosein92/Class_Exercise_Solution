@@ -26,9 +26,24 @@ class IceCream:
                 return self.new_icecream.items()
 
 
-
     def ic_save(self):
         ic_df = pd.DataFrame.from_dict(IceCream.icecream_dict)
         ic_df = ic_df.transpose()
         ic_df.to_csv('ice_creams_kinds.csv', index=True)
+
+
+
+class Musical(IceCream):
+    def __init__(self, name, weight, price, songs):
+        super().__init__(name, weight, price)
+        self.songs = songs
+        self.add_song_to_icecream()
+        print(self.new_icecream)
+
+
+    def add_song_to_icecream(self):
+        self.new_icecream[self.name]['songs'] = self.songs
+        IceCream.icecream_dict[self.name]['songs'] = self.songs
+        self.ic_save()
+        return self.new_icecream.items()
 

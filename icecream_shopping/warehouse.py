@@ -36,9 +36,13 @@ class Warehouse:
             if ice_creams_kinds == {}:
                 print('You have not defined any IceCreams before.')
             else:
-                user_input_kind = pyip.inputMenu(choices=list(ice_creams_kinds.keys()),
+                try:
+                    user_input_kind = pyip.inputMenu(choices=list(ice_creams_kinds.keys()),
                                                  prompt='What Kind of IceCream(s) would you like to add?\n',
-                                                 numbered=True, blank= False)
+                                                 numbered=True, blank= False,)
+                except:
+                    user_input_kind = pyip.inputInt(prompt=f"What Kind of IceCream(s) would you like to add?\n1. {list(ice_creams_kinds.keys())[0]}\n",min=1,max=1)
+                    user_input_kind = list(ice_creams_kinds.keys())[0]
                 user_input_quantity = pyip.inputInt(prompt="How many IceCreams would you like to add? :  ", blank=False)
                 ice_cream_weight = ice_creams_kinds[user_input_kind]['weight'] * user_input_quantity
 
@@ -50,7 +54,10 @@ class Warehouse:
                     if user_input_kind in self.stock_data:
                         self.stock_data[user_input_kind]['weight'] += ice_cream_weight
                     else:
-                        self.stock_data[user_input_kind] = {"weight": ice_cream_weight, "price" : ice_creams_kinds[user_input_kind]['price'], "songs" : ice_creams_kinds[user_input_kind]['songs']}
+                        try:
+                            self.stock_data[user_input_kind] = {"weight": ice_cream_weight, "price" : ice_creams_kinds[user_input_kind]['price'], "songs" : ice_creams_kinds[user_input_kind]['songs']}
+                        except KeyError:
+                            self.stock_data[user_input_kind] = {"weight": ice_cream_weight, "price" : ice_creams_kinds[user_input_kind]['price'], "songs" : ''}
                     print(
                         f'{user_input_kind} Ice Cream Now is < {self.stock_data[user_input_kind]["weight"]} g(s) > .\n')
 
@@ -63,7 +70,11 @@ class Warehouse:
                     if ice_cream_weight + self.stock > CAPACITY:
                         print("You Haven't Enough Rooms To Add These Quantity of IceCreams.")
                     else:
-                        self.stock_data[icecream] = {'weight': ice_cream_weight, 'price': values['price']}
+                        try:
+                            self.stock_data[icecream] = {'weight': ice_cream_weight, 'price': values['price'], 'songs': values['songs']}
+                        except KeyError:
+                            self.stock_data[icecream] = {'weight': ice_cream_weight, 'price': values['price'], 'songs': ''}
+
                         self.stock += ice_cream_weight
                         print(f'" {icecream} " Added To Your Stocks Successfully...\n')
 
@@ -75,13 +86,19 @@ class Warehouse:
         if self.stock_data == {}:
             print("You don't have any IceCreams To Sell.")
         else:
-            user_input_ice_cream = pyip.inputMenu(choices=list(self.stock_data.keys()), prompt='What Ice Cream(s) would you like to sell?\n', numbered= True, blank=False)
-            user_input_ice_cream_quantity = pyip.inputInt(prompt="How many IceCreams would you like to sell? :  ",min= 1, blank=False)
-            if user_input_ice_cream == "musical":
+            try:
+                user_input_ice_cream = pyip.inputMenu(choices=list(self.stock_data.keys()), prompt='What Ice Cream(s) would you like to sell?\n', numbered= True, blank=False)
+            except:
+                user_input_ice_cream = pyip.inputInt(prompt=f"What Ice Cream(s) would you like to sell?\n1. {list(self.stock_data.keys())[0]}\n", blank=False,min=1,max=1)
+                user_input_ice_cream = (list(self.stock_data.keys()))[0]
+            user_input_ice_cream_quantity = pyip.inputInt(prompt="How many IceCreams would you like to sell?\n",min= 1, blank=False)
+            if (len(self.stock_data[user_input_ice_cream]['songs'])) > 1:
                 user_input_ice_cream_quantity *= 2
                 songs = self.stock_data[user_input_ice_cream]['songs'].split(', ')
                 print(songs)
-                pyip.inputMenu(choices=songs, prompt='Which Song would you like to Play?\n',numbered= True, blank=False)
+                play = pyip.inputYesNo(prompt='Would You Like To Play Song?\n', blank=False).lower()
+                if play == "yes":
+                    print('Playing Song Now...')
             weight = ice_creams_kinds[user_input_ice_cream]['weight'] * user_input_ice_cream_quantity
             if weight > self.stock_data[user_input_ice_cream]['weight']:
                 print(f"Not enough < {user_input_ice_cream} > Ice Creams.")
@@ -98,20 +115,20 @@ class Warehouse:
         if self.stock_data == {}:
             print("You don't have any IceCreams To Edit.")
         else:
-            user_input_ice_cream = pyip.inputMenu(choices=list(ice_creams_kinds.keys()), prompt='What Ice Cream(s) would you like to Edit?\n', numbered= True, blank=False)
-            user_input_option = pyip.inputMenu(choices=list(ice_creams_kinds[user_input_ice_cream].keys()), prompt='Which Option you want to edit?\n', numbered= True, blank=False)
+            user_input_ice_cream = pyip.inputMenu(choices=list(self.stock_data.keys()), prompt='What Ice Cream(s) would you like to Edit?\n', numbered= True, blank=False)
+            user_input_option = pyip.inputMenu(choices=list(self.stock_data[user_input_ice_cream].keys()), prompt='Which Option you want to edit?\n', numbered= True, blank=False)
             print(user_input_ice_cream)
             print(user_input_option)
-            if user_input_ice_cream == "musical" and user_input_option == "songs":
-                    songs = ice_creams_kinds[user_input_ice_cream]['songs'].split(',')
-                    input_song = pyip.inputStr(prompt= 'What Song would you like to Add?\n')
+            if len(self.stock_data[user_input_ice_cream]['songs']) > 1 and user_input_option == "songs":
+                    songs = self.stock_data[user_input_ice_cream]['songs'].split(',')
+                    input_song = pyip.inputStr(prompt= 'Enter The Song Name That would you like to Add?\n')
                     songs.append(f" '{input_song.title()}' ")
-                    ice_creams_kinds[user_input_ice_cream]['songs'] = ','.join(songs)
+                    self.stock_data[user_input_ice_cream]['songs'] = ','.join(songs)
             elif user_input_option == "songs":
                 print("You Can't Set Music For This Kind Of Ice Cream.")
 
             elif user_input_option== "weight" or user_input_option == "price":
-                ice_creams_kinds[user_input_ice_cream][user_input_option] = pyip.inputFloat(prompt=f'Enter New Ice Cream {user_input_option}: ', blank=False)
+                self.stock_data[user_input_ice_cream][user_input_option] = pyip.inputFloat(prompt=f'Enter New Ice Cream {user_input_option}: ', blank=False)
 
     def save(self):
         wh_df = pd.DataFrame.from_dict(self.stock_data)

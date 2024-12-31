@@ -6,6 +6,7 @@ class Menu:
         self.name= ""
         self.price = 0
         self.weight = 0
+        self.songs = None
 
     def show(self):
         user_input = pyip.inputMenu(choices=
@@ -31,11 +32,19 @@ class Menu:
         else:
             print("Invalid Input")
 
-    def define_new_icecream(self):
+    def which_type(self):
+        which_type = pyip.inputMenu(['Normal', 'Musical'], prompt= "Which Type Would you like to add?\n", numbered=True,blank=False)
+        return which_type.lower()
+
+
+    def define_new_icecream(self,ice_cream_type):
         self.name = pyip.inputStr("Please Enter Icecream Kind Name: ", blank=False, )
         self.price = pyip.inputFloat("Please Enter Icecream Price: ", min=1, blank=False)
         self.weight = pyip.inputFloat("Please Enter Icecream Weight: ", min=1, blank=False)
-        return self.name, self.price, self.weight
+        if ice_cream_type == "musical":
+            self.songs = pyip.inputStr("Please Enter Song Name: ", blank=False, )
+
+        return self.name, self.price, self.weight, self.songs
 
     def want_to_add_to_stock(self):
         user_answer = pyip.inputYesNo("Do You Want Add This IceCream To Your Stocks List Now? (Yes/No)\n", blank=False)
