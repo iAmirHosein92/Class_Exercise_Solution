@@ -38,7 +38,6 @@ class Musical(IceCream):
         super().__init__(name, weight, price)
         self.songs = songs
         self.add_song_to_icecream()
-        print(self.new_icecream)
 
 
     def add_song_to_icecream(self):

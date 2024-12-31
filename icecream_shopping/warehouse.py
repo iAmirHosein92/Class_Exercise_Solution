@@ -1,6 +1,7 @@
 import pyinputplus as pyip
 import pandas as pd
 import os
+import ast
 
 CAPACITY = 200000
 class Warehouse:
@@ -13,6 +14,8 @@ class Warehouse:
         if os.path.exists('warehouse.csv'):
             self.stock_data = pd.read_csv('warehouse.csv', index_col=0).transpose().to_dict()
             for ice_cream,values in self.stock_data.items():
+                if isinstance(values['songs'], str):
+                    values['songs'] = ast.literal_eval(values['songs'])
                 self.stock += values["weight"]
             return self.stock_data
         else:
@@ -92,9 +95,9 @@ class Warehouse:
                 user_input_ice_cream = pyip.inputInt(prompt=f"What Ice Cream(s) would you like to sell?\n1. {list(self.stock_data.keys())[0]}\n", blank=False,min=1,max=1)
                 user_input_ice_cream = (list(self.stock_data.keys()))[0]
             user_input_ice_cream_quantity = pyip.inputInt(prompt="How many IceCreams would you like to sell?\n",min= 1, blank=False)
-            if (len(self.stock_data[user_input_ice_cream]['songs'])) > 1:
+            if (len(self.stock_data[user_input_ice_cream]['songs'])) > 0:
                 user_input_ice_cream_quantity *= 2
-                songs = self.stock_data[user_input_ice_cream]['songs'].split(', ')
+                songs = self.stock_data[user_input_ice_cream]['songs']
                 print(songs)
                 play = pyip.inputYesNo(prompt='Would You Like To Play Song?\n', blank=False).lower()
                 if play == "yes":

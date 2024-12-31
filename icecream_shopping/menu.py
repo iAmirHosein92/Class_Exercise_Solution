@@ -6,7 +6,7 @@ class Menu:
         self.name= ""
         self.price = 0
         self.weight = 0
-        self.songs = None
+        self.songs = []
 
     def show(self):
         user_input = pyip.inputMenu(choices=
@@ -42,7 +42,7 @@ class Menu:
         self.price = pyip.inputFloat("Please Enter Icecream Price: ", min=1, blank=False)
         self.weight = pyip.inputFloat("Please Enter Icecream Weight: ", min=1, blank=False)
         if ice_cream_type == "musical":
-            self.songs = pyip.inputStr("Please Enter Song Name: ", blank=False, )
+            self.songs.append(pyip.inputStr("Please Enter Song Name: ", blank=False))
 
         return self.name, self.price, self.weight, self.songs
 
