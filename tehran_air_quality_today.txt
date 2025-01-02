@@ -1,23 +1,23 @@
-Date:Sat, 10 Azar 1403 
+Date:Thu, 22 Azar 1403 
 
-Region, Tehran (منطقه 15 تهران) = 149 
-Region 19, Tehran, Iran = 130 
-Fath, Tehran, Iran = 119 
-Salamat, Tehran (سلامت تهران) = 117 
-Sharif University, Tehran (شریف- منطقه 2 تهران) = 105 
-Tehran - Park Shokoufeh, Tehran (تهران - پارک شکوفه تهران) = 104 
-Razi, Tehran (پارک رازی  تهران) = 102 
-Pirozi, Tehran, Iran = 101 
-Region 11, Tehran, Iran = 100 
-Tarbiyat Modares University, Tehran, Iran = 92 
-Mahalati, Tehran, Iran = 86 
-Tehran University, Tehran (دانشگاه تهران تهران) = 84 
-Golbarg, Tehran (گلبرگ- منطقه 8 تهران) = 74 
-Geophysics, Tehran (ژئو فیزیک تهران) = 73 
-Setad, Tehran, Iran = 69 
-Region 2, Tehran, Iran = 68 
-Masoudiyeh, Tehran, Iran = 67 
-Imam Khomeini, Tehran (امام خمینی تهران) = - 
+Region 11, Tehran, Iran = 181 
+Region 19, Tehran, Iran = 180 
+Salamat, Tehran (سلامت تهران) = 179 
+Pirozi, Tehran, Iran = 175 
+Fath, Tehran, Iran = 175 
+Region, Tehran (منطقه 15 تهران) = 174 
+Sharif University, Tehran (شریف- منطقه 2 تهران) = 172 
+Tarbiyat Modares University, Tehran, Iran = 169 
+Tehran University, Tehran (دانشگاه تهران تهران) = 169 
+Tehran - Park Shokoufeh, Tehran (تهران - پارک شکوفه تهران) = 167 
+Golbarg, Tehran (گلبرگ- منطقه 8 تهران) = 165 
+Imam Khomeini, Tehran (امام خمینی تهران) = 157 
+Region 2, Tehran, Iran = 156 
+Setad, Tehran, Iran = 155 
+Masoudiyeh, Tehran, Iran = 154 
+Geophysics, Tehran (ژئو فیزیک تهران) = 152 
+Razi, Tehran (پارک رازی  تهران) = 152 
+Mahalati, Tehran, Iran = - 
 Region 4, Tehran, Iran = - 
 District 12, Tehran (شهرداری مرکز منطقه 12 تهران) = - 
 Region 10, Tehran, Iran = - 
